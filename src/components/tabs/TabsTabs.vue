@@ -17,7 +17,7 @@
       v-on:click.native="scrollLeft"
     ) chevron_left
     v-icon(
-      right 
+      right
       v-ripple=""
       v-on:click.native="scrollRight"
     ) chevron_right
@@ -71,12 +71,16 @@
       this.$vuetify.load(() => {
         this.resize()
         this.slider()
-        window.addEventListener('resize', this.resize, false)
+        if (typeof window !== 'undefined') {
+          window.addEventListener('resize', this.resize, false)
+        }
       })
     },
 
     beforeDestroy () {
-      window.removeEventListener('resize', this.resize, false)
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', this.resize, false)
+      }
     },
 
     methods: {
@@ -84,7 +88,7 @@
         if (!this.$refs.container) {
           return
         }
-        
+
         this.mobile = this.$refs.container.scrollWidth > this.$refs.container.clientWidth
         this.$vuetify.bus.pub(`tab:resize:${this.tabsUid}`)
       },

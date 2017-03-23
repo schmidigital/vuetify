@@ -11,7 +11,7 @@ function plugin(Vue) {
   Object.keys(Directives).forEach(key => {
     Vue.directive(key, Directives[key])
   })
-  
+
   Object.keys(Components).forEach(key => {
     Vue.component(key, Components[key])
   })
